@@ -61,39 +61,58 @@
   @keyframes blink { to { visibility: hidden; } }
   a { color: #000080; font-weight: bold; }
 
-  /* Dancing hamster cutout (foreground, click to play) */
+  /* Full-screen dancing hamster overlay (click to play) */
   #dancecorner {
     position: fixed;
-    bottom: 18px;
-    right: 18px;
+    inset: 0;
     z-index: 100;
     cursor: pointer;
     user-select: none;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    transition: opacity 0.5s ease;
+  }
+  #dancecorner.dismissed {
+    opacity: 0;
+    pointer-events: none;
   }
   .dance-bubble {
     background: #fff;
-    border: 2px solid #ff0066;
-    border-radius: 14px;
-    padding: 6px 10px;
-    font-size: 13px;
+    border: 3px solid #ff0066;
+    border-radius: 18px;
+    padding: 14px 28px;
+    font-size: 26px;
     color: #000080;
     font-weight: bold;
-    margin: 0 auto 8px;
+    margin: 0 auto 28px;
     display: inline-block;
-    box-shadow: 2px 2px 0 #ff0066;
+    box-shadow: 4px 4px 0 #ff0066, 0 0 24px rgba(255, 0, 102, 0.4);
     animation: bubblePulse 0.45s ease-in-out infinite alternate;
     position: relative;
+    text-align: center;
+    line-height: 1.2;
+  }
+  .dance-bubble small {
+    display: block;
+    font-size: 14px;
+    color: #ff0066;
+    margin-top: 4px;
+    font-weight: bold;
   }
   .dance-bubble::after {
     content: "";
     position: absolute;
-    bottom: -10px;
+    bottom: -14px;
     left: 50%;
     transform: translateX(-50%);
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-top: 10px solid #ff0066;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-top: 14px solid #ff0066;
   }
   @keyframes bubblePulse {
     from { transform: scale(1);    }
@@ -103,32 +122,31 @@
     display: flex;
     align-items: flex-end;
     justify-content: center;
-    gap: 2px;
-    height: 100px;
+    gap: 8px;
   }
   .dh {
     display: inline-block;
-    font-size: 72px;
     line-height: 1;
-    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.35));
+    filter: drop-shadow(0 0 14px #ff66cc) drop-shadow(0 6px 8px rgba(0, 0, 0, 0.4));
     animation: hamDance 0.45s ease-in-out infinite alternate;
   }
-  .dh.s1 { animation-delay: 0s;    font-size: 68px; }
-  .dh.s2 { animation-delay: 0.15s; font-size: 88px; }
-  .dh.s3 { animation-delay: 0.30s; font-size: 56px; }
+  .dh.s1 { animation-delay: 0s;    font-size: 160px; }
+  .dh.s2 { animation-delay: 0.15s; font-size: 220px; }
+  .dh.s3 { animation-delay: 0.30s; font-size: 130px; }
   @keyframes hamDance {
-    from { transform: translateY(0)   rotate(-10deg); }
-    to   { transform: translateY(-18px) rotate(10deg); }
-  }
-  #dancecorner.playing .dance-bubble { display: none; }
-  #dancecorner.playing .dh {
-    filter: drop-shadow(0 0 10px #00ff66) drop-shadow(0 0 4px #ffff00);
+    from { transform: translateY(0)    rotate(-12deg); }
+    to   { transform: translateY(-32px) rotate(12deg);  }
   }
 
   @media (max-width: 720px) {
     h1 { font-size: 36px; }
     .sub { font-size: 14px; }
     .grid { grid-template-columns: repeat(4, 1fr); padding: 8px; gap: 4px; }
+    .dance-bubble { font-size: 18px; padding: 10px 18px; margin-bottom: 18px; }
+    .dance-bubble small { font-size: 11px; }
+    .dh.s1 { font-size: 90px;  }
+    .dh.s2 { font-size: 120px; }
+    .dh.s3 { font-size: 72px;  }
   }
 </style>
 </head>
@@ -158,8 +176,8 @@
 <p class="sub">U have found the secret KEVIN DANCE page!! tell ur friends!!</p>
 <p><a href="home.html">&laquo; back 2 kevinsworld</a></p>
 
-<div id="dancecorner" title="click 2 start the dance">
-  <div class="dance-bubble">click me 2 start!!</div>
+<div id="dancecorner" title="click anywhere 2 start">
+  <div class="dance-bubble">CLICK 2 START THE DANCE<small>&darr; &darr; &darr;</small></div>
   <div class="dance-trio">
     <span class="dh s1">&#128057;</span>
     <span class="dh s2">&#128057;</span>
@@ -172,16 +190,18 @@
   var corner = document.getElementById('dancecorner');
   var audio  = document.querySelector('audio');
   if (!corner || !audio) return;
+  function dismiss() {
+    corner.classList.add('dismissed');
+    setTimeout(function () { corner.remove(); }, 600);
+  }
   corner.addEventListener('click', function () {
-    if (audio.paused) {
-      audio.play().then(function () { corner.classList.add('playing'); });
+    var p = audio.play();
+    if (p && typeof p.then === 'function') {
+      p.then(dismiss).catch(function () { dismiss(); });
     } else {
-      audio.pause();
-      corner.classList.remove('playing');
+      dismiss();
     }
   });
-  audio.addEventListener('play',  function () { corner.classList.add('playing');  });
-  audio.addEventListener('pause', function () { corner.classList.remove('playing'); });
 })();
 </script>
 <script src="eggs.js"></script>
