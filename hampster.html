@@ -72,30 +72,15 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: rgba(0, 0, 0, 0.94);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
     transition: opacity 0.5s ease;
   }
   #dancecorner.dismissed {
     opacity: 0;
     pointer-events: none;
   }
-
-  /* Foreground dancers — hidden until overlay dismissed */
-  #dancers {
-    position: fixed;
-    bottom: 16px;
-    right: 16px;
-    z-index: 50;
-    display: flex;
-    align-items: flex-end;
-    gap: 6px;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.6s ease 0.1s;
-  }
-  #dancers.visible { opacity: 1; }
   .dance-bubble {
     background: #fff;
     border: 3px solid #ff0066;
@@ -147,9 +132,9 @@
     width: auto;
     height: auto;
   }
-  .dh.s1 { animation-delay: 0s;    height: 110px; }
-  .dh.s2 { animation-delay: 0.15s; height: 150px; }
-  .dh.s3 { animation-delay: 0.30s; height: 90px;  }
+  .dh.s1 { animation-delay: 0s;    height: 220px; }
+  .dh.s2 { animation-delay: 0.15s; height: 300px; }
+  .dh.s3 { animation-delay: 0.30s; height: 170px; }
   @keyframes hamDance {
     from { transform: translateY(0)    rotate(-12deg); }
     to   { transform: translateY(-32px) rotate(12deg);  }
@@ -161,9 +146,9 @@
     .grid { grid-template-columns: repeat(4, 1fr); padding: 8px; gap: 4px; }
     .dance-bubble { font-size: 18px; padding: 10px 18px; margin-bottom: 18px; }
     .dance-bubble small { font-size: 11px; }
-    .dh.s1 { height: 80px;  }
-    .dh.s2 { height: 110px; }
-    .dh.s3 { height: 64px;  }
+    .dh.s1 { height: 140px; }
+    .dh.s2 { height: 190px; }
+    .dh.s3 { height: 110px; }
   }
 </style>
 </head>
@@ -194,32 +179,29 @@
 <p><a href="home.html">&laquo; back 2 kevinsworld</a></p>
 
 <div id="dancecorner" title="click anywhere 2 start">
-  <div class="dance-bubble">CLICK 2 START THE SHOW<small>&#9658;</small></div>
-</div>
-
-<div id="dancers" aria-hidden="true">
-  <img class="dh s1" src="hampster.png" alt="">
-  <img class="dh s2" src="hampster.png" alt="">
-  <img class="dh s3" src="hampster.png" alt="">
+  <div class="dance-bubble">CLICK 2 BEGIN<small>&darr; &darr; &darr;</small></div>
+  <div class="dance-trio">
+    <img class="dh s1" src="hampster.png" alt="">
+    <img class="dh s2" src="hampster.png" alt="">
+    <img class="dh s3" src="hampster.png" alt="">
+  </div>
 </div>
 
 <script>
 (function () {
-  var corner  = document.getElementById('dancecorner');
-  var dancers = document.getElementById('dancers');
-  var audio   = document.querySelector('audio');
+  var corner = document.getElementById('dancecorner');
+  var audio  = document.querySelector('audio');
   if (!corner || !audio) return;
-  function start() {
+  function dismiss() {
     corner.classList.add('dismissed');
-    if (dancers) dancers.classList.add('visible');
     setTimeout(function () { corner.remove(); }, 600);
   }
   corner.addEventListener('click', function () {
     var p = audio.play();
     if (p && typeof p.then === 'function') {
-      p.then(start).catch(function () { start(); });
+      p.then(dismiss).catch(function () { dismiss(); });
     } else {
-      start();
+      dismiss();
     }
   });
 })();
