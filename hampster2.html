@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>~*~ KEVIN DANCE :: DELUXE EDITION ~*~</title>
+<style>
+  body {
+    margin: 0;
+    background-color: #ffcc00;
+    background-image: repeating-linear-gradient(45deg, rgba(255,170,0,0.55) 0 20px, transparent 20px 40px);
+    font-family: "Comic Sans MS", cursive;
+    color: #000080;
+    text-align: center;
+    overflow-x: hidden;
+    animation: bgCycle 9s linear infinite;
+  }
+  @keyframes bgCycle {
+    0%   { background-color: #ffcc00; }
+    16%  { background-color: #ff66cc; }
+    32%  { background-color: #66ccff; }
+    48%  { background-color: #66ff66; }
+    64%  { background-color: #ffaa00; }
+    80%  { background-color: #cc66ff; }
+    100% { background-color: #ffcc00; }
+  }
+
+  h1 {
+    font-size: 56px;
+    color: #ff0066;
+    text-shadow: 3px 3px 0 #fff, 6px 6px 0 #000080;
+    margin: 14px 0 4px;
+    letter-spacing: 2px;
+  }
+  .sub {
+    font-size: 18px;
+    color: #000080;
+    font-weight: bold;
+  }
+  .midi {
+    background: #000;
+    color: #00ff00;
+    font-family: "Courier New", monospace;
+    border: 3px ridge #fff;
+    display: inline-block;
+    padding: 6px 12px;
+    margin: 8px;
+    font-size: 13px;
+  }
+
+  /* Grid: alternating kevin / hampster, square cells */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 6px;
+    padding: 14px;
+    position: relative;
+    z-index: 1;
+  }
+  .grid img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border: 2px solid #ff0066;
+    background: rgba(255, 255, 255, 0.35);
+  }
+  .grid img.k {
+    object-fit: cover;
+    animation: bounce 0.6s ease-in-out infinite alternate;
+  }
+  .grid img.h {
+    object-fit: contain;
+    padding: 4px;
+    border-color: #00aa66;
+    background: rgba(255, 230, 200, 0.5);
+    animation: wiggle 0.55s ease-in-out infinite alternate;
+  }
+  .grid img:nth-child(2n) { animation-delay: 0.10s; }
+  .grid img:nth-child(3n) { animation-delay: 0.20s; }
+  .grid img:nth-child(5n) { animation-delay: 0.30s; }
+  .grid img:nth-child(7n) { animation-delay: 0.40s; }
+  @keyframes bounce {
+    from { transform: translateY(0)    rotate(-3deg) scale(1);    }
+    to   { transform: translateY(-12px) rotate(3deg)  scale(1.04); }
+  }
+  @keyframes wiggle {
+    from { transform: rotate(-14deg) translateY(0)   scale(1);    }
+    to   { transform: rotate(14deg)  translateY(-6px) scale(1.06); }
+  }
+
+  /* Floating popup catchphrases */
+  .popups {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 40;
+    overflow: hidden;
+  }
+  .popup {
+    position: absolute;
+    bottom: -80px;
+    font-family: Impact, "Arial Black", sans-serif;
+    font-size: 38px;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 2px 2px 0 #ff0066, 4px 4px 0 #000080, 0 0 14px rgba(255, 0, 102, 0.6);
+    letter-spacing: 1px;
+    white-space: nowrap;
+    opacity: 0;
+    animation: floatUp 14s linear infinite;
+  }
+  .popup.p2 { color: #ffe14d; text-shadow: 2px 2px 0 #ff6600, 4px 4px 0 #000080; }
+  .popup.p3 { color: #66ffcc; text-shadow: 2px 2px 0 #003366, 4px 4px 0 #000;     }
+  @keyframes floatUp {
+    0%   { transform: translateY(0)      rotate(-6deg); opacity: 0; }
+    8%   { opacity: 1; }
+    85%  { opacity: 1; }
+    100% { transform: translateY(-115vh) rotate(8deg);  opacity: 0; }
+  }
+
+  .blink { animation: blink 1s steps(2,start) infinite; }
+  @keyframes blink { to { visibility: hidden; } }
+  a { color: #000080; font-weight: bold; }
+
+  /* Click-to-start overlay (same as v1) */
+  #dancecorner {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    transition: opacity 0.5s ease;
+  }
+  #dancecorner.dismissed {
+    opacity: 0;
+    pointer-events: none;
+  }
+  .dance-bubble {
+    background: #fff;
+    border: 3px solid #ff0066;
+    border-radius: 18px;
+    padding: 14px 28px;
+    font-size: 26px;
+    color: #000080;
+    font-weight: bold;
+    margin: 0 auto 28px;
+    display: inline-block;
+    box-shadow: 4px 4px 0 #ff0066, 0 0 24px rgba(255, 0, 102, 0.4);
+    animation: bubblePulse 0.45s ease-in-out infinite alternate;
+    position: relative;
+    text-align: center;
+    line-height: 1.2;
+  }
+  .dance-bubble small {
+    display: block;
+    font-size: 14px;
+    color: #ff0066;
+    margin-top: 4px;
+    font-weight: bold;
+  }
+  .dance-bubble::after {
+    content: "";
+    position: absolute;
+    bottom: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-top: 14px solid #ff0066;
+  }
+  @keyframes bubblePulse {
+    from { transform: scale(1);    }
+    to   { transform: scale(1.06); }
+  }
+  .dance-trio {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 8px;
+  }
+  .dh {
+    display: inline-block;
+    line-height: 1;
+    filter: drop-shadow(0 0 14px #ff66cc) drop-shadow(0 6px 8px rgba(0, 0, 0, 0.4));
+    animation: hamDance 0.45s ease-in-out infinite alternate;
+  }
+  .dh.s1 { animation-delay: 0s;    height: 220px; }
+  .dh.s2 { animation-delay: 0.15s; height: 300px; }
+  .dh.s3 { animation-delay: 0.30s; height: 170px; }
+  @keyframes hamDance {
+    from { transform: translateY(0)    rotate(-12deg); }
+    to   { transform: translateY(-32px) rotate(12deg);  }
+  }
+
+  @media (max-width: 720px) {
+    h1 { font-size: 36px; }
+    .sub { font-size: 14px; }
+    .grid { grid-template-columns: repeat(4, 1fr); padding: 8px; gap: 4px; }
+    .popup { font-size: 26px; }
+    .dance-bubble { font-size: 18px; padding: 10px 18px; margin-bottom: 18px; }
+    .dance-bubble small { font-size: 11px; }
+    .dh.s1 { height: 140px; }
+    .dh.s2 { height: 190px; }
+    .dh.s3 { height: 110px; }
+  }
+</style>
+</head>
+<body>
+
+<h1 class="blink">KEVIN&middot;DANCE :: <span style="color:#000080;">DELUXE</span></h1>
+<div class="sub">~*~ now featuring 100&#37; more hampster ~*~</div>
+<div class="midi">&#9835; now playing: smashmouth - all star.mid &#9835; PRESS PLAY &darr;</div>
+<div style="max-width:600px; margin: 6px auto 10px;">
+  <audio controls loop style="width:100%;">
+    <source src="smashmouth - all star.mp3" type="audio/mpeg">
+    your browser is too old 4 audio. upgrade 2 IE6.
+  </audio>
+</div>
+
+<div class="grid">
+  <img class="k" src="kevin.jpeg" alt=""><img class="h" src="hampster.png" alt="">
+  <img class="k" src="kevin.jpeg" alt=""><img class="h" src="hampster.png" alt="">
+  <img class="k" src="kevin.jpeg" alt=""><img class="h" src="hampster.png" alt="">
+  <img class="k" src="kevin.jpeg" alt=""><img class="h" src="hampster.png" alt="">
+  <img class="h" src="hampster.png" alt=""><img class="k" src="kevin.jpeg" alt="">
+  <img class="h" src="hampster.png" alt=""><img class="k" src="kevin.jpeg" alt="">
+  <img class="h" src="hampster.png" alt=""><img class="k" src="kevin.jpeg" alt="">
+  <img class="h" src="hampster.png" alt=""><img class="k" src="kevin.jpeg" alt="">
+  <img class="k" src="kevin.jpeg" alt=""><img class="h" src="hampster.png" alt="">
+  <img class="k" src="kevin.jpeg" alt=""><img class="h" src="hampster.png" alt="">
+  <img class="k" src="kevin.jpeg" alt=""><img class="h" src="hampster.png" alt="">
+  <img class="k" src="kevin.jpeg" alt=""><img class="h" src="hampster.png" alt="">
+</div>
+
+<p class="sub">U have found the secret KEVIN DANCE page!! tell ur friends!!</p>
+<p><a href="home.html">&laquo; back 2 kevinsworld</a> &middot; <a href="hampster.html">&larr; classic edition</a></p>
+
+<div class="popups" aria-hidden="true">
+  <div class="popup"     style="left: 8%;  animation-delay: 0s;  ">PWNED!</div>
+  <div class="popup p2"  style="left: 78%; animation-delay: 2.6s;">DANCE!!</div>
+  <div class="popup p3"  style="left: 32%; animation-delay: 5.2s;">ALL UR BASE</div>
+  <div class="popup"     style="left: 62%; animation-delay: 7.8s;">1337</div>
+  <div class="popup p2"  style="left: 18%; animation-delay: 10.4s;">GO KEVIN!</div>
+  <div class="popup p3"  style="left: 86%; animation-delay: 12s; ">SQL TIME</div>
+</div>
+
+<div id="dancecorner" title="click anywhere 2 start">
+  <div class="dance-bubble">CLICK 2 BEGIN<small>&darr; &darr; &darr;</small></div>
+  <div class="dance-trio">
+    <img class="dh s1" src="hampster.png" alt="">
+    <img class="dh s2" src="hampster.png" alt="">
+    <img class="dh s3" src="hampster.png" alt="">
+  </div>
+</div>
+
+<script>
+(function () {
+  var corner = document.getElementById('dancecorner');
+  var audio  = document.querySelector('audio');
+  if (!corner || !audio) return;
+  function dismiss() {
+    corner.classList.add('dismissed');
+    setTimeout(function () { corner.remove(); }, 600);
+  }
+  corner.addEventListener('click', function () {
+    var p = audio.play();
+    if (p && typeof p.then === 'function') {
+      p.then(dismiss).catch(function () { dismiss(); });
+    } else {
+      dismiss();
+    }
+  });
+})();
+</script>
+<script src="eggs.js"></script>
+</body>
+</html>
