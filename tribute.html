@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>~*~ Kevin Gaughan's OFFICIAL Homepage ~*~ [[ENTER]]</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: #000080;
+    background-image:
+      repeating-linear-gradient(45deg, rgba(255,255,0,0.08) 0 10px, transparent 10px 20px);
+    color: #ffff00;
+    font-family: "Comic Sans MS", "Trebuchet MS", cursive;
+    text-align: center;
+  }
+
+  #topbar {
+    background: #ff0000;
+    color: #ffff00;
+    border-bottom: 4px ridge #ffff00;
+    padding: 6px 0;
+    font-weight: bold;
+    font-size: 12px;
+    letter-spacing: 2px;
+  }
+
+  #header {
+    background: linear-gradient(180deg, #ff00ff 0%, #800080 100%);
+    border-top: 4px ridge #ffff00;
+    border-bottom: 4px ridge #ffff00;
+    padding: 18px;
+  }
+
+  #header h1 {
+    margin: 0;
+    font-family: Impact, "Arial Black", sans-serif;
+    font-size: 56px;
+    color: #ffff00;
+    text-shadow:
+      2px 2px 0 #ff0000,
+      4px 4px 0 #00ffff,
+      6px 6px 0 #000000;
+    letter-spacing: 3px;
+  }
+
+  #header .subtitle {
+    color: #00ffff;
+    font-size: 18px;
+    font-weight: bold;
+    text-shadow: 1px 1px 0 #000;
+  }
+
+  marquee.fire {
+    background: #000;
+    color: #ff8800;
+    border-top: 2px solid #ffff00;
+    border-bottom: 2px solid #ffff00;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 4px 0;
+  }
+
+  #layout {
+    display: grid;
+    grid-template-columns: 200px 1fr 200px;
+    gap: 8px;
+    padding: 8px;
+  }
+
+  .panel {
+    background: #c0c0c0;
+    color: #000080;
+    border: 3px outset #dcdcdc;
+    padding: 10px;
+    font-size: 13px;
+  }
+
+  .panel h2 {
+    margin: 0 0 8px 0;
+    font-family: Impact, "Arial Black", sans-serif;
+    font-size: 20px;
+    color: #ff0000;
+    text-shadow: 1px 1px 0 #ffff00;
+    border-bottom: 2px dashed #000080;
+    padding-bottom: 4px;
+  }
+
+  .panel a {
+    color: #0000ff;
+    font-weight: bold;
+    text-decoration: underline;
+  }
+  .panel a:visited { color: #800080; }
+
+  #main .card {
+    background: #ffffe0;
+    color: #000;
+    border: 4px ridge #ffd700;
+    padding: 14px;
+    margin-bottom: 10px;
+    text-align: left;
+  }
+
+  #main h2 {
+    color: #ff0000;
+    font-family: Impact, "Arial Black", sans-serif;
+    font-size: 28px;
+    text-shadow: 2px 2px 0 #ffff00;
+    margin: 0 0 8px 0;
+    text-align: center;
+  }
+
+  .photoFrame {
+    display: inline-block;
+    padding: 6px;
+    background: #ffd700;
+    border: 4px ridge #ff00ff;
+    margin: 8px;
+  }
+
+  .photoFrame .pic {
+    width: 180px;
+    height: 220px;
+    border: 2px solid #000;
+    display: block;
+    object-fit: cover;
+    animation: photoGlow 2s ease-in-out infinite alternate;
+  }
+  @keyframes photoGlow {
+    from { box-shadow: 0 0 6px #ffff00, 0 0 12px #ff00ff; }
+    to   { box-shadow: 0 0 14px #00ffff, 0 0 24px #ff0000; }
+  }
+  .photoFrame .caption {
+    color: #800000;
+    font-weight: bold;
+    margin-top: 6px;
+    font-size: 12px;
+  }
+
+  table.skills {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 6px;
+  }
+  table.skills td {
+    border: 1px solid #888;
+    padding: 4px 6px;
+    background: #fff;
+    font-family: "Courier New", monospace;
+    font-size: 12px;
+  }
+  table.skills td:first-child { width: 40%; font-weight: bold; }
+  .bar {
+    display: inline-block;
+    height: 12px;
+    background: linear-gradient(90deg, #00ff00, #ffff00, #ff0000);
+    border: 1px solid #000;
+    vertical-align: middle;
+  }
+
+  .blink { animation: blink 1s steps(2, start) infinite; }
+  @keyframes blink { to { visibility: hidden; } }
+
+  .underconstruction {
+    display: inline-block;
+    background: #ffff00;
+    color: #000;
+    border: 3px ridge #ff8800;
+    padding: 6px 10px;
+    font-weight: bold;
+    font-family: "Courier New", monospace;
+    transform: rotate(-3deg);
+    margin: 6px;
+  }
+
+  .badge {
+    display: inline-block;
+    width: 88px;
+    height: 31px;
+    line-height: 31px;
+    text-align: center;
+    font-family: "Courier New", monospace;
+    font-size: 10px;
+    font-weight: bold;
+    border: 1px solid #000;
+    margin: 2px;
+    color: #fff;
+  }
+  .b1 { background: #000; color: #00ff00; }
+  .b2 { background: #00008b; }
+  .b3 { background: #8b0000; }
+  .b4 { background: #006400; }
+  .b5 { background: #4b0082; color: #ffff00; }
+
+  #counter {
+    background: #000;
+    color: #00ff00;
+    font-family: "Courier New", monospace;
+    border: 2px inset #888;
+    padding: 4px 10px;
+    display: inline-block;
+    font-size: 18px;
+    letter-spacing: 4px;
+    margin-top: 6px;
+  }
+
+  #footer {
+    background: #000080;
+    color: #ffff00;
+    border-top: 4px ridge #ffff00;
+    padding: 14px;
+    margin-top: 10px;
+    font-size: 12px;
+  }
+
+  #footer a { color: #00ffff; }
+
+  hr.rainbow {
+    height: 4px;
+    border: 0;
+    background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
+    margin: 8px 0;
+  }
+
+  ul.linklist { list-style: square; padding-left: 18px; text-align: left; }
+  ul.linklist li { margin: 4px 0; }
+
+  .star { color: #ffff00; }
+
+  .quote {
+    background: #fff;
+    border-left: 6px solid #ff0000;
+    padding: 8px;
+    font-style: italic;
+    color: #000;
+    margin: 6px 0;
+  }
+
+  .hot {
+    color: #ff0000;
+    font-weight: bold;
+    text-shadow: 0 0 4px #ffff00;
+  }
+</style>
+</head>
+<body>
+
+<div id="topbar">
+  <span class="blink">*** NEW! ***</span> &nbsp; YOU ARE VISITOR #007341 &nbsp; | &nbsp;
+  BEST VIEWED IN INTERNET EXPLORER 6 @ 1024x768 &nbsp; | &nbsp;
+  <span class="blink">SIGN THE GUESTBOOK!!</span>
+</div>
+
+<div id="header">
+  <h1>KEVIN GAUGHAN'S</h1>
+  <div class="subtitle">~*~ OFFICIAL HOMEPAGE OF THE INTERNET ~*~</div>
+  <div class="subtitle" style="font-size:14px; margin-top:4px;">
+    Sales Strategy &amp; Operations <span class="hot">|</span> Google Cloud Security <span class="hot">|</span> SQL Wizard
+  </div>
+</div>
+
+<marquee class="fire" scrollamount="8" behavior="scroll" direction="left">
+  &gt;&gt;&gt; WELCOME 2 KEVIN'S CRIB ON THE INFORMATION SUPERHIGHWAY &gt;&gt;&gt;
+  this site is 100&#37; HAND CODED in NOTEPAD &gt;&gt;&gt;
+  if u see a bug PLZ EMAIL THE WEBMASTER &gt;&gt;&gt;
+  shoutouts 2 the U of I crew &gt;&gt;&gt;
+  GO ILLINI &gt;&gt;&gt;
+</marquee>
+
+<div id="layout">
+
+  <!-- LEFT NAV -->
+  <div class="panel" id="leftnav">
+    <h2>~ Navigation ~</h2>
+    <ul class="linklist">
+      <li><a href="#about">About Me</a></li>
+      <li><a href="#skillz">My SKILLZ</a></li>
+      <li><a href="#xp">Work XP</a></li>
+      <li><a href="#school">Skool</a></li>
+      <li><a href="#guestbook">Guestbook</a></li>
+      <li><a href="#links">Kool Links</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <hr class="rainbow">
+
+    <h2>~ Webring ~</h2>
+    <div style="font-size:11px;">
+      <a href="#">&laquo; PREV</a> |
+      <a href="#">RANDOM</a> |
+      <a href="#">NEXT &raquo;</a>
+    </div>
+    <div style="margin-top:8px;">
+      <span class="badge b1">HTML 4.01</span>
+      <span class="badge b2">NETSCAPE</span>
+      <span class="badge b3">IE READY</span>
+      <span class="badge b4">DIAL-UP</span>
+      <span class="badge b5">Y2K SAFE</span>
+    </div>
+
+    <hr class="rainbow">
+    <div class="underconstruction">
+      <span class="blink">&#9888;</span> UNDER<br>CONSTRUCTION
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div id="main">
+
+    <div class="card" id="about">
+      <h2>&laquo; ABOUT THE WEBMASTER &raquo;</h2>
+      <div style="display:flex; align-items:flex-start; gap:14px; flex-wrap:wrap;">
+        <div class="photoFrame">
+          <img class="pic" src="kevin.jpeg" alt="Kevin Gaughan">
+          <div class="caption">^ THE MAN, THE MYTH ^<br>Kevin G.</div>
+        </div>
+        <div style="flex:1; min-width:240px;">
+          <p>
+            Greetings cyber-traveler!! <span class="blink">&#9733;</span>
+            U have stumbled upon the digital domicile of <b class="hot">KEVIN GAUGHAN</b>,
+            certified data ninja &amp; sales strategy operative reporting LIVE
+            from the <u>Greater Chicago Area</u>.
+          </p>
+          <p>
+            Kevin is a rare hybrid &mdash; <b>quantitative AND creative</b> &mdash;
+            the kind of guy who can write elegant SQL <i>and</i> make a deck
+            that wakes up the back row. Currently building dashboards &amp;
+            running the numbers for <b>Google Cloud Security</b>.
+          </p>
+          <div class="quote">
+            &quot;Pushes self and team to provide great results, no matter what the task entails.&quot;
+            &mdash; the man himself
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" id="skillz">
+      <h2>&laquo; KEVIN'S 1337 SKILLZ &raquo;</h2>
+      <table class="skills">
+        <tr><td>SQL (BigQuery / PLX)</td><td><span class="bar" style="width:96%"></span> 96%</td></tr>
+        <tr><td>Looker Dashboards</td><td><span class="bar" style="width:92%"></span> 92%</td></tr>
+        <tr><td>Microsoft Excel</td><td><span class="bar" style="width:94%"></span> 94%</td></tr>
+        <tr><td>Google Sheets</td><td><span class="bar" style="width:93%"></span> 93%</td></tr>
+        <tr><td>Storytelling w/ Data</td><td><span class="bar" style="width:90%"></span> 90%</td></tr>
+        <tr><td>Sales Strategy &amp; Ops</td><td><span class="bar" style="width:95%"></span> 95%</td></tr>
+        <tr><td>Python (calling APIs)</td><td><span class="bar" style="width:55%"></span> 55% &amp; rising</td></tr>
+        <tr><td>Work Ethic</td><td><span class="bar" style="width:99%"></span> &#x221E; / 100</td></tr>
+      </table>
+    </div>
+
+    <div class="card" id="xp">
+      <h2>&laquo; WORK EXPERIENCE &raquo;</h2>
+      <ul class="linklist">
+        <li><b>Google</b> &mdash; Cloud Security, Sales Strategy &amp; Operations
+          <br><span style="font-size:11px;">turning rows of data into decisions execs actually read</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="card" id="school">
+      <h2>&laquo; EDUMACATION &raquo;</h2>
+      <ul class="linklist">
+        <li><b>University of Illinois at Urbana-Champaign</b>
+          <br><span style="font-size:11px;">&#127907; Go Illini! &#127907;</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="card" id="guestbook">
+      <h2>&laquo; GUESTBOOK &raquo;</h2>
+      <p style="text-align:center;">
+        <span class="blink hot">&#9733;</span>
+        SIGN MY GUESTBOOK &mdash; tell me how AWESOME this site is!!
+        <span class="blink hot">&#9733;</span>
+      </p>
+      <div style="text-align:center;">
+        <input type="text" placeholder="ur name" style="padding:4px;">
+        <input type="text" placeholder="ur AIM s/n" style="padding:4px;">
+        <br><br>
+        <textarea rows="3" cols="40" placeholder="leave a msg 4 kevin..."></textarea>
+        <br>
+        <button style="background:#ff0000; color:#ffff00; font-weight:bold; border:3px outset #fff; padding:6px 14px; font-family:Impact;">
+          SUBMIT!!
+        </button>
+      </div>
+    </div>
+
+    <div class="card" id="contact" style="text-align:center;">
+      <h2>&laquo; CONTACT KEVIN &raquo;</h2>
+      <p>
+        &#9993; Hit him up on the LinkedIn &mdash;
+        <a href="https://www.linkedin.com/in/kevin-gaughan-598b7134/" target="_blank">kevin-gaughan</a>
+      </p>
+      <p style="font-size:11px; color:#444;">
+        (no spam plz, no chain letters, no Nigerian princes)
+      </p>
+    </div>
+
+  </div>
+
+  <!-- RIGHT PANEL -->
+  <div class="panel" id="rightpanel">
+    <h2>~ Stats ~</h2>
+    <div id="counter">0007341</div>
+    <div style="font-size:11px; margin-top:4px;">visitors since 1999</div>
+
+    <hr class="rainbow">
+
+    <h2>~ Now Playing ~</h2>
+    <div style="font-size:12px;">
+      &#9835; <i>smashmouth - all star.mid</i> &#9835;
+      <br><br>
+      <span style="font-size:10px;">[ midi auto-play disabled<br> by ur browser :( ]</span>
+    </div>
+
+    <hr class="rainbow">
+
+    <h2>~ Shoutouts ~</h2>
+    <ul class="linklist" style="font-size:12px;">
+      <li>the BigQuery team</li>
+      <li>everyone @ Looker</li>
+      <li>caffeine &#9749;</li>
+      <li>U of I '0X crew</li>
+    </ul>
+
+    <hr class="rainbow">
+
+    <div style="font-size:11px;">
+      <span class="blink hot">&#9733;</span>
+      tell a friend!<br>
+      <span class="blink hot">&#9733;</span>
+      bookmark this page!
+    </div>
+  </div>
+
+</div>
+
+<marquee class="fire" scrollamount="6" direction="right">
+  &lt;&lt;&lt; THIS PAGE IS A FAN-MADE TRIBUTE &lt;&lt;&lt;
+  HAND-CRAFTED WITH 100&#37; ORGANIC HTML &lt;&lt;&lt;
+  NO COOKIES, NO TRACKERS, JUST VIBES &lt;&lt;&lt;
+</marquee>
+
+<div id="footer">
+  &copy; 2002-2026 KEVIN GAUGHAN DOT NET &mdash; ALL RIGHTS RESERVED FOREVER<br>
+  <span style="font-size:10px;">webmaster: kevin &middot; powered by GeoCities&trade; (rip) &middot; please don't right-click my source</span>
+  <br><br>
+  <span class="badge b1">HTML 4.01</span>
+  <span class="badge b2">CSS 1.0</span>
+  <span class="badge b5">NO FRAMES</span>
+  <span class="badge b3">VIEWABLE BY ALL</span>
+</div>
+
+</body>
+</html>

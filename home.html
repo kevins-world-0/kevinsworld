@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Welcome to my world - kevinsworld.com</title>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 0;
+    background: #0a1530;
+    color: #ffffff;
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 13px;
+  }
+  a { color: #6cb4ff; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  a.yellow { color: #ffe14d; }
+
+  /* Top welcome bar */
+  #welcome {
+    padding: 8px 14px 4px;
+    font-weight: bold;
+    color: #fff;
+    font-size: 13px;
+  }
+
+  /* Banner */
+  #banner {
+    background: linear-gradient(180deg, #2a3a66 0%, #16224a 100%);
+    border-top: 1px solid #4a5e92;
+    border-bottom: 1px solid #04081a;
+    padding: 14px 18px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  #banner .swoosh {
+    flex: 0 0 auto;
+    width: 220px;
+    height: 60px;
+    background:
+      linear-gradient(90deg, transparent 0%, transparent 8%, #c8d2e6 9%, #c8d2e6 11%, transparent 12%),
+      linear-gradient(90deg, transparent 0%, transparent 24%, #c8d2e6 25%, #c8d2e6 27%, transparent 28%),
+      linear-gradient(90deg, transparent 0%, transparent 40%, #c8d2e6 41%, #c8d2e6 43%, transparent 44%);
+    position: relative;
+    opacity: 0.6;
+  }
+  #banner .swoosh::before {
+    content: "►►►";
+    position: absolute;
+    left: 0; top: 50%;
+    transform: translateY(-50%);
+    color: #8aa0d0;
+    font-size: 28px;
+    letter-spacing: -4px;
+  }
+  #banner .logo {
+    font-family: "Press Start 2P", "Courier New", monospace;
+    font-size: 38px;
+    color: #fff;
+    text-shadow:
+      0 0 4px rgba(255,255,255,0.6),
+      2px 2px 0 #04081a;
+    letter-spacing: 4px;
+    flex: 1;
+    text-align: center;
+  }
+  #banner .logo .small { font-size: 26px; }
+
+  /* Top-right action links */
+  #actions {
+    background: #16224a;
+    border-bottom: 1px solid #04081a;
+    padding: 4px 14px;
+    text-align: right;
+    font-size: 12px;
+  }
+  #actions a {
+    color: #fff;
+    margin: 0 6px;
+    font-weight: bold;
+  }
+  #actions .icon {
+    color: #ffe14d;
+    margin-right: 2px;
+  }
+
+  /* Tagline strip */
+  #tagline {
+    background: #0a1530;
+    text-align: right;
+    padding: 6px 16px;
+    font-weight: bold;
+    color: #fff;
+    font-size: 14px;
+    border-bottom: 1px solid #1a2a52;
+  }
+
+  /* 3-column layout */
+  #layout {
+    display: grid;
+    grid-template-columns: 200px 1fr 220px;
+    gap: 12px;
+    padding: 12px;
+  }
+
+  /* Side panels */
+  .panel {
+    background: #0a1530;
+    border: 1px solid #1a2a52;
+    margin-bottom: 10px;
+  }
+  .panel .head {
+    background: #2a3a66;
+    color: #fff;
+    font-weight: bold;
+    font-size: 13px;
+    padding: 5px 8px;
+    border-bottom: 1px solid #04081a;
+  }
+  .panel .head .marker {
+    color: #ffe14d;
+    margin-right: 4px;
+    font-weight: bold;
+  }
+  .panel ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .panel ul li {
+    border-bottom: 1px solid #1a2a52;
+  }
+  .panel ul li a {
+    display: block;
+    padding: 7px 10px;
+    color: #6cb4ff;
+    font-weight: bold;
+    font-size: 14px;
+  }
+  .panel ul li a:hover {
+    background: #16224a;
+    text-decoration: none;
+    color: #fff;
+  }
+
+  .panel .body {
+    padding: 8px 10px;
+    color: #fff;
+    font-size: 13px;
+    line-height: 1.4;
+  }
+  .panel .body.center { text-align: center; }
+  .panel .fact {
+    text-align: center;
+    padding: 12px 10px;
+    font-size: 18px;
+    line-height: 1.3;
+    color: #fff;
+    font-family: Georgia, "Times New Roman", serif;
+  }
+
+  /* Center column */
+  #center .topbox {
+    border: 1px solid #1a2a52;
+    background: #0a1530;
+    padding: 10px 14px;
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #fff;
+  }
+  #center .topbox .arrow { color: #ffe14d; margin-right: 4px; }
+  #center .pipes {
+    text-align: center;
+    margin: 14px 0 6px;
+    font-size: 16px;
+    color: #fff;
+  }
+  #center .pipes a { font-size: 16px; font-weight: bold; }
+  #center .pipes .sep { color: #6cb4ff; margin: 0 4px; }
+
+  #center .pitch {
+    border: 1px solid #1a2a52;
+    padding: 10px 14px;
+    margin: 12px 0;
+    color: #fff;
+    line-height: 1.5;
+  }
+  #center .pitch .lead { color: #ffe14d; font-weight: bold; }
+
+  #center .update-strip {
+    background: #2a3a66;
+    border: 1px solid #1a2a52;
+    padding: 6px 12px;
+    margin-top: 12px;
+    font-weight: bold;
+    color: #fff;
+  }
+  #center .update-strip .label { color: #cfd8ee; }
+
+  #center .post {
+    padding: 10px 4px 14px;
+    color: #fff;
+    line-height: 1.55;
+  }
+  #center .post .hey {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 52px;
+    color: #ffe14d;
+    font-weight: bold;
+    line-height: 1;
+    margin-right: 10px;
+    float: left;
+  }
+  #center .post p { margin: 0 0 12px 0; }
+
+  /* Right sidebar buttons (88x31) */
+  .btn88 {
+    width: 88px;
+    height: 31px;
+    border: 1px solid #04081a;
+    margin: 4px auto;
+    display: block;
+    color: #fff;
+    font-family: "Courier New", monospace;
+    font-size: 11px;
+    font-weight: bold;
+    line-height: 31px;
+    text-align: center;
+    text-shadow: 1px 1px 0 #000;
+  }
+  .btn-orange {
+    background: linear-gradient(180deg, #ff8a00 0%, #b85000 100%);
+    color: #fff;
+    font-family: "Arial Black", sans-serif;
+    letter-spacing: 1px;
+  }
+  .btn-broken {
+    background: #dcdcdc;
+    color: #444;
+    border-color: #888;
+    font-style: italic;
+  }
+  .btn-white {
+    background: #fff;
+    color: #000;
+  }
+
+  /* Photo banner (kevin) */
+  .kevin-banner {
+    width: 88px;
+    height: 31px;
+    background-image: url("kevin.jpeg");
+    background-size: cover;
+    background-position: center 25%;
+    border: 1px solid #04081a;
+    margin: 4px auto;
+    display: block;
+  }
+
+  /* Footer-ish */
+  .legal {
+    color: #6cb4ff;
+    font-size: 11px;
+    text-align: center;
+    padding: 10px;
+  }
+</style>
+</head>
+<body>
+
+<div id="welcome">Welcome to my world - kevinsworld.com</div>
+
+<div id="banner">
+  <div class="swoosh"></div>
+  <div class="logo">Kevin&apos;s <span class="small">World</span></div>
+  <div style="width:220px;"></div>
+</div>
+
+<div id="actions">
+  <a href="#"><span class="icon">&#9993;</span>Send Us Email</a>
+  <a href="#"><span class="icon">&#128274;</span>Advertising</a>
+  <a href="#">Privacy</a>
+  <a href="#"><span class="icon">&#128100;</span>Press</a>
+  <a href="#"><span class="icon">?</span>Support</a>
+  <a href="#"><span class="icon">&#11015;</span>Staff</a>
+</div>
+
+<div id="tagline">
+  A Hilarious Collection Of Sales Strategy &amp; Operations For The Masses
+</div>
+
+<div id="layout">
+
+  <!-- LEFT SIDEBAR -->
+  <div id="left">
+    <div class="panel">
+      <div class="head"><span class="marker">&#9632;</span>Main Content</div>
+      <ul>
+        <li><a href="#">SQL Queries</a></li>
+        <li><a href="#">Dashboards</a></li>
+        <li><a href="#">Pivot Tables</a></li>
+        <li><a href="#">Slide Decks</a></li>
+        <li><a href="#">Forecasts</a></li>
+        <li><a href="#">QBRs</a></li>
+        <li><a href="#">Looker Boards</a></li>
+        <li><a href="#">BigQuery@Work</a></li>
+        <li><a href="#">Private Lounge</a></li>
+      </ul>
+    </div>
+
+    <div class="panel">
+      <div class="head"><span class="marker">&#9650;</span>People</div>
+      <ul>
+        <li><a href="#">Kevin Forum</a></li>
+        <li><a href="#">Kevin top 100</a></li>
+        <li><a href="#">Our Fans</a></li>
+        <li><a href="#">Hate-mail</a></li>
+      </ul>
+    </div>
+
+    <div class="panel">
+      <div class="head"><span class="marker">&#9670;</span>Misc.</div>
+      <ul>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">Staff</a></li>
+        <li><a href="#">Privacy</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- CENTER -->
+  <div id="center">
+    <div class="topbox">
+      <span class="arrow">&#9658;</span> What exactly is this place? Find out <a href="#">here</a>. &nbsp;&mdash;&nbsp;
+      <span class="arrow">&#9658;</span> <span class="yellow">Broken Query?</span> Let us know <a href="#">here</a>.
+    </div>
+
+    <div style="text-align:center; font-weight:bold; padding: 4px 0; color:#fff;">
+      Click the following links to get started.. or click <a href="#">here</a> for our newest dashboards:
+    </div>
+
+    <div class="pipes">
+      <a href="#">SQL</a><span class="sep">-</span>
+      <a href="#">Looker</a><span class="sep">-</span>
+      <a href="#">Decks</a><span class="sep">-</span>
+      <a href="#">Sheets</a><span class="sep">-</span>
+      <a href="#">BigQuery</a><span class="sep">-</span>
+      <a href="#">Cool</a>
+    </div>
+    <div class="pipes">
+      <a href="#">QBRs</a><span class="sep">-</span>
+      <a href="#">BigQuery@Work</a><span class="sep">-</span>
+      <a href="#">Private Lounge</a><span class="sep">-</span>
+      <a href="#">Kevin Forum</a>
+    </div>
+
+    <div class="pitch">
+      Do you use yahoo, google or other search engines? Try using <a href="#" class="yellow">BigQuery</a>..
+      it pays you in clean joins and tidy schemas everytime you do a query and they mail you a dashboard at the end of the month.
+      <span class="lead">Search.Get Paid.Be Smart.</span> Everyone should be doing this!
+    </div>
+
+    <div class="pitch">
+      Like this site? Become a member of the <a href="#" class="yellow">inside</a> and see what no one else sees. Click <a href="#">here</a> for info.
+    </div>
+
+    <div class="pitch">
+      Are you a <a href="#" class="yellow">webmaster</a> of a sales-ops site and want tons of exposure for free!?
+      We have something you will be interested in. Click <a href="#">here</a> for info.
+    </div>
+
+    <div class="update-strip">
+      <span class="label">Update</span> &nbsp; Sunday, February 3rd, 2026
+    </div>
+
+    <div class="post">
+      <div class="hey">HEY EVERYONE!</div>
+      <p>
+        Before you check out my site, you guys have to check this place out. It is saturday night
+        and I have been writing SQL for the last 3 hours!! I am up <span class="yellow">$200 in shadow
+        revenue attribution</span> so far tonight and I have been winning non stop!! .. You are crazy if
+        you guys don&apos;t check this out! You can query for free and it is really cool! Only Winners
+        BigQuery- 98% Cache Hit Rate. If you closed a deal, tell everyone about it <a href="#">here</a>!!
+        EVERYONE MUST CHECK THIS OUT!! I am in here right now pivoting. I am warning you though,
+        it is very addicting.. -kevin
+      </p>
+      <p>
+        Do you use yahoo, google or other search engines? Try using these guys.. they pay you in
+        clean joins everytime you do a search and they mail you a dashboard at the end of the
+        month. <span class="yellow">Search.Get Paid.Be Smart.</span> Everyone should this out!!
+      </p>
+      <p>
+        Is this dashboard real or fake? You decide. Click <a href="#">here</a>. The last 2 weeks I have
+        been pivoting at this online sheet. You can query just for free, Im addicted to the joins,
+        you guys have to try&hellip;
+      </p>
+    </div>
+  </div>
+
+  <!-- RIGHT SIDEBAR -->
+  <div id="right">
+
+    <div class="panel">
+      <div class="head"><span class="marker">&#9650;</span>Link Partners</div>
+      <ul>
+        <li><a href="#">BigQuery&amp;Fun</a></li>
+        <li><a href="#">Looker Bomb</a></li>
+        <li><a href="#">SQLite</a></li>
+        <li><a href="#">2400bps</a></li>
+        <li><a href="#">eBay is great</a></li>
+      </ul>
+    </div>
+
+    <div class="panel">
+      <div class="head"><span class="marker">&raquo;</span>Random Fact</div>
+      <div class="fact">
+        Kevin once wrote a single SQL CTE so elegant a VP cried.
+        <div style="margin-top:8px;"><a href="#" style="font-size:13px;">another?</a></div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="head"><span class="marker">&lowast;&lowast;</span>Random Page</div>
+      <div class="body center">
+        <a href="#">Click here for something random.</a>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="head"><span class="marker">&#9650;</span>Humor Portal</div>
+      <div class="body center">
+        <a href="#" style="font-weight:bold; font-size:15px;">Kevin top 100</a>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="head"><span class="marker">&lt;&gt;</span>Buttons</div>
+      <div class="body center">
+        <div class="btn88 btn-orange">KEVINS<br>WORLD</div>
+        <div class="btn88 btn-broken">[ image ]</div>
+        <div class="kevin-banner" title="kevinsworld"></div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<div class="legal">
+  Copyright &copy; 1998-2026 Kevin&apos;s World Inc. &mdash; A Hilarious Collection Of Media For The Masses
+</div>
+
+</body>
+</html>
