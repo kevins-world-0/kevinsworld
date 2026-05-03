@@ -61,6 +61,70 @@
   @keyframes blink { to { visibility: hidden; } }
   a { color: #000080; font-weight: bold; }
 
+  /* Dancing hamster cutout (foreground, click to play) */
+  #dancecorner {
+    position: fixed;
+    bottom: 18px;
+    right: 18px;
+    z-index: 100;
+    cursor: pointer;
+    user-select: none;
+    text-align: center;
+  }
+  .dance-bubble {
+    background: #fff;
+    border: 2px solid #ff0066;
+    border-radius: 14px;
+    padding: 6px 10px;
+    font-size: 13px;
+    color: #000080;
+    font-weight: bold;
+    margin: 0 auto 8px;
+    display: inline-block;
+    box-shadow: 2px 2px 0 #ff0066;
+    animation: bubblePulse 0.45s ease-in-out infinite alternate;
+    position: relative;
+  }
+  .dance-bubble::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 10px solid #ff0066;
+  }
+  @keyframes bubblePulse {
+    from { transform: scale(1);    }
+    to   { transform: scale(1.06); }
+  }
+  .dance-trio {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 2px;
+    height: 100px;
+  }
+  .dh {
+    display: inline-block;
+    font-size: 72px;
+    line-height: 1;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.35));
+    animation: hamDance 0.45s ease-in-out infinite alternate;
+  }
+  .dh.s1 { animation-delay: 0s;    font-size: 68px; }
+  .dh.s2 { animation-delay: 0.15s; font-size: 88px; }
+  .dh.s3 { animation-delay: 0.30s; font-size: 56px; }
+  @keyframes hamDance {
+    from { transform: translateY(0)   rotate(-10deg); }
+    to   { transform: translateY(-18px) rotate(10deg); }
+  }
+  #dancecorner.playing .dance-bubble { display: none; }
+  #dancecorner.playing .dh {
+    filter: drop-shadow(0 0 10px #00ff66) drop-shadow(0 0 4px #ffff00);
+  }
+
   @media (max-width: 720px) {
     h1 { font-size: 36px; }
     .sub { font-size: 14px; }
@@ -94,6 +158,32 @@
 <p class="sub">U have found the secret KEVIN DANCE page!! tell ur friends!!</p>
 <p><a href="home.html">&laquo; back 2 kevinsworld</a></p>
 
+<div id="dancecorner" title="click 2 start the dance">
+  <div class="dance-bubble">click me 2 start!!</div>
+  <div class="dance-trio">
+    <span class="dh s1">&#128057;</span>
+    <span class="dh s2">&#128057;</span>
+    <span class="dh s3">&#128057;</span>
+  </div>
+</div>
+
+<script>
+(function () {
+  var corner = document.getElementById('dancecorner');
+  var audio  = document.querySelector('audio');
+  if (!corner || !audio) return;
+  corner.addEventListener('click', function () {
+    if (audio.paused) {
+      audio.play().then(function () { corner.classList.add('playing'); });
+    } else {
+      audio.pause();
+      corner.classList.remove('playing');
+    }
+  });
+  audio.addEventListener('play',  function () { corner.classList.add('playing');  });
+  audio.addEventListener('pause', function () { corner.classList.remove('playing'); });
+})();
+</script>
 <script src="eggs.js"></script>
 </body>
 </html>
