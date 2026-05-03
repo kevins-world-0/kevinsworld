@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>kevinsworld :: admin</title>
+<style>
+  body {
+    margin: 0;
+    background: #000;
+    color: #00ff66;
+    font-family: "Courier New", monospace;
+    min-height: 100vh;
+    padding: 20px;
+  }
+  .terminal {
+    max-width: 720px;
+    margin: 40px auto;
+    border: 1px solid #00ff66;
+    box-shadow: 0 0 18px rgba(0,255,102,0.35);
+    padding: 18px 22px;
+    background: rgba(0,30,10,0.6);
+  }
+  h1 {
+    font-size: 18px;
+    margin: 0 0 14px 0;
+    border-bottom: 1px dashed #00ff66;
+    padding-bottom: 6px;
+  }
+  label { display: block; margin: 10px 0 4px; font-size: 13px; }
+  input {
+    width: 100%;
+    background: #000;
+    color: #00ff66;
+    border: 1px solid #00ff66;
+    padding: 6px 8px;
+    font-family: inherit;
+    font-size: 14px;
+    box-sizing: border-box;
+  }
+  button {
+    background: #003311;
+    color: #00ff66;
+    border: 1px solid #00ff66;
+    padding: 8px 18px;
+    font-family: inherit;
+    font-size: 14px;
+    margin-top: 14px;
+    cursor: pointer;
+  }
+  button:hover { background: #00ff66; color: #000; }
+  .blink { animation: blink 1s steps(2,start) infinite; }
+  @keyframes blink { to { opacity: 0; } }
+  pre {
+    margin: 0;
+    line-height: 1.05;
+    font-size: 11px;
+    white-space: pre;
+    overflow-x: auto;
+  }
+  .granted {
+    text-align: center;
+    font-size: 22px;
+    margin: 14px 0;
+    text-shadow: 0 0 8px #00ff66;
+  }
+  a { color: #00ff66; }
+  .hint { font-size: 11px; color: #006633; margin-top: 6px; }
+</style>
+</head>
+<body>
+
+<div class="terminal" id="login">
+  <h1>kevinsworld :: ADMIN PANEL <span class="blink">_</span></h1>
+  <div>&gt; UNAUTHORIZED ACCESS WILL BE PROSECUTED</div>
+  <div>&gt; please enter your credentials:</div>
+
+  <label>username:</label>
+  <input id="u" type="text" placeholder="admin" autocomplete="off">
+
+  <label>password:</label>
+  <input id="p" type="password" placeholder="********" autocomplete="off">
+
+  <button onclick="grant()">[ LOG IN ]</button>
+  <div class="hint">hint: try anything</div>
+</div>
+
+<div class="terminal" id="granted" style="display:none;">
+  <h1>&gt; ACCESS GRANTED <span class="blink">_</span></h1>
+  <div class="granted">u r now CISO of kevinsworld</div>
+  <pre>
+    .--------------.
+   /                \
+  |   _        _    |
+  |  (o)      (o)   |
+  |        &lt;        |
+  |       \___/     |
+   \                /
+    '--------------'
+       k e v i n
+  </pre>
+  <div>&gt; loading dashboards.....OK</div>
+  <div>&gt; granting BigQuery slots.....OK</div>
+  <div>&gt; revoking everyone else's access.....OK</div>
+  <div>&gt; <span class="blink">_</span></div>
+  <p><a href="home.html">[ back to kevinsworld ]</a></p>
+</div>
+
+<script>
+function grant() {
+  document.getElementById('login').style.display = 'none';
+  document.getElementById('granted').style.display = 'block';
+}
+</script>
+<script src="eggs.js"></script>
+</body>
+</html>

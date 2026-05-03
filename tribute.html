@@ -453,5 +453,21 @@
   <span class="badge b3">VIEWABLE BY ALL</span>
 </div>
 
+<script src="eggs.js"></script>
+<script>
+// 4) Clickable visitor counter
+(function () {
+  var el = document.getElementById('counter');
+  if (!el) return;
+  var n = parseInt(el.textContent, 10) || 7341;
+  el.style.cursor = 'pointer';
+  el.title = 'click me';
+  el.addEventListener('click', function () {
+    n++;
+    if (n >= 9999999) { el.textContent = 'u broke it'; return; }
+    el.textContent = String(n).padStart(7, '0');
+  });
+})();
+</script>
 </body>
 </html>

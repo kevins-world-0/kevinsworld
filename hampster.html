@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>~*~ KEVIN DANCE ~*~</title>
+<style>
+  body {
+    margin: 0;
+    background: #ffcc00;
+    background-image:
+      repeating-linear-gradient(45deg, #ffcc00 0 20px, #ffaa00 20px 40px);
+    font-family: "Comic Sans MS", cursive;
+    color: #000080;
+    text-align: center;
+    overflow-x: hidden;
+  }
+  h1 {
+    font-size: 56px;
+    color: #ff0066;
+    text-shadow: 3px 3px 0 #fff, 6px 6px 0 #000080;
+    margin: 14px 0 4px;
+    letter-spacing: 2px;
+  }
+  .sub {
+    font-size: 18px;
+    color: #000080;
+    font-weight: bold;
+  }
+  .midi {
+    background: #000;
+    color: #00ff00;
+    font-family: "Courier New", monospace;
+    border: 3px ridge #fff;
+    display: inline-block;
+    padding: 6px 12px;
+    margin: 8px;
+    font-size: 13px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 6px;
+    padding: 14px;
+  }
+  .grid img {
+    width: 100%;
+    height: auto;
+    border: 2px solid #ff0066;
+    animation: bounce 0.6s ease-in-out infinite alternate;
+  }
+  .grid img:nth-child(2n)  { animation-delay: 0.1s; }
+  .grid img:nth-child(3n)  { animation-delay: 0.2s; }
+  .grid img:nth-child(5n)  { animation-delay: 0.3s; }
+  .grid img:nth-child(7n)  { animation-delay: 0.4s; }
+  @keyframes bounce {
+    from { transform: translateY(0)   rotate(-3deg); }
+    to   { transform: translateY(-12px) rotate(3deg); }
+  }
+  .blink { animation: blink 1s steps(2,start) infinite; }
+  @keyframes blink { to { visibility: hidden; } }
+  a { color: #000080; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<h1 class="blink">KEVIN&middot;DANCE</h1>
+<div class="sub">~*~ welcome 2 the kevin dance ~*~</div>
+<div class="midi">&#9835; now playing: kevin_dance.mid &#9835; [ buffering... ]</div>
+
+<div class="grid">
+  <img src="kevin.jpeg" alt=""><img src="kevin.jpeg" alt=""><img src="kevin.jpeg" alt="">
+  <img src="kevin.jpeg" alt=""><img src="kevin.jpeg" alt=""><img src="kevin.jpeg" alt="">
+  <img src="kevin.jpeg" alt=""><img src="kevin.jpeg" alt=""><img src="kevin.jpeg" alt="">
+  <img src="kevin.jpeg" alt=""><img src="kevin.jpeg" alt=""><img src="kevin.jpeg" alt="">
+  <img src="kevin.jpeg" alt=""><img src="kevin.jpeg" alt=""><img src="kevin.jpeg" alt="">
+  <img src="kevin.jpeg" alt=""><img src="kevin.jpeg" alt=""><img src="kevin.jpeg" alt="">
+  <img src="kevin.jpeg" alt=""><img src="kevin.jpeg" alt=""><img src="kevin.jpeg" alt="">
+  <img src="kevin.jpeg" alt=""><img src="kevin.jpeg" alt=""><img src="kevin.jpeg" alt="">
+</div>
+
+<p class="sub">U have found the secret KEVIN DANCE page!! tell ur friends!!</p>
+<p><a href="home.html">&laquo; back 2 kevinsworld</a></p>
+
+<script src="eggs.js"></script>
+</body>
+</html>

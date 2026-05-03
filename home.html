@@ -399,6 +399,9 @@
         been pivoting at this online sheet. You can query just for free, Im addicted to the joins,
         you guys have to try&hellip;
       </p>
+      <p style="margin-top:18px;">
+        &#9733; <a id="runaway" href="#" class="yellow" style="font-weight:bold; font-size:15px;">CLICK HERE FOR FREE BIGQUERY CREDITS!!!</a> &#9733;
+      </p>
     </div>
   </div>
 
@@ -455,5 +458,29 @@
   Copyright &copy; 1998-2026 Kevin&apos;s World Inc. &mdash; A Hilarious Collection Of Media For The Masses
 </div>
 
+<script src="eggs.js"></script>
+<script>
+// 3) Runaway "click here" link
+(function () {
+  var link = document.getElementById('runaway');
+  if (!link) return;
+  var dodges = 0;
+  link.addEventListener('mouseenter', function () {
+    if (dodges >= 3) {
+      link.textContent = 'ok fine, you got me. there is no free SQL.';
+      link.style.position = 'static';
+      link.onclick = function (e) { e.preventDefault(); alert('jk lol -kevin'); };
+      return;
+    }
+    var w = window.innerWidth - 220;
+    var h = window.innerHeight - 60;
+    link.style.position = 'fixed';
+    link.style.left = Math.floor(Math.random() * w) + 'px';
+    link.style.top  = Math.floor(Math.random() * h) + 'px';
+    link.style.zIndex = '9999';
+    dodges++;
+  });
+})();
+</script>
 </body>
 </html>
