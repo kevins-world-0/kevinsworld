@@ -2,6 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>kevinsworld.com - Media for the masses</title>
 <style>
   * { box-sizing: border-box; }
@@ -287,6 +288,27 @@
     font-size: 11px;
     padding: 16px 12px 24px;
     line-height: 1.6;
+  }
+
+  /* Mobile */
+  @media (max-width: 720px) {
+    #topnav { font-size: 10px; line-height: 1.7; padding: 6px 6px; }
+    #topnav a { padding: 0 3px; }
+    #tagline { font-size: 11px; letter-spacing: 0; padding: 6px 8px; }
+    #wrap { padding: 14px 8px 0; }
+    #pills { flex-wrap: wrap; gap: 6px; margin-bottom: 18px; }
+    .pill { width: 30%; padding: 8px 6px; font-size: 9px; }
+    .connector { display: none; }
+    #logo { padding: 22px 12px; }
+    #logo .brand { font-size: 38px; letter-spacing: -1px; }
+    #logo .brand .small,
+    #logo .brand .apos { font-size: 24px; }
+    #logo .globe { width: 36px; height: 36px; vertical-align: -6px; }
+    #row { flex-direction: column; }
+    #enter { flex: 0 0 auto; }
+    #testimonial { flex-direction: column; text-align: center; }
+    #testimonial .avatar { width: 100px; height: 120px; margin: 0 auto; }
+    .bubble::before { display: none; }
   }
 </style>
 </head>

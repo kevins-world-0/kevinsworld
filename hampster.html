@@ -2,6 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>~*~ KEVIN DANCE ~*~</title>
 <style>
   body {
@@ -59,6 +60,12 @@
   .blink { animation: blink 1s steps(2,start) infinite; }
   @keyframes blink { to { visibility: hidden; } }
   a { color: #000080; font-weight: bold; }
+
+  @media (max-width: 720px) {
+    h1 { font-size: 36px; }
+    .sub { font-size: 14px; }
+    .grid { grid-template-columns: repeat(4, 1fr); padding: 8px; gap: 4px; }
+  }
 </style>
 </head>
 <body>

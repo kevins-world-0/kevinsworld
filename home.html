@@ -2,6 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Welcome to my world - kevinsworld.com</title>
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 <style>
@@ -268,6 +269,25 @@
     font-size: 11px;
     text-align: center;
     padding: 10px;
+  }
+
+  /* Mobile */
+  @media (max-width: 720px) {
+    #welcome { font-size: 12px; padding: 8px 10px 4px; }
+    #banner { padding: 10px; gap: 8px; flex-direction: column; align-items: stretch; }
+    #banner .swoosh { display: none; }
+    #banner .logo { font-size: 24px; letter-spacing: 2px; text-align: center; }
+    #banner > div:last-child { display: none; }
+    #actions { text-align: center; padding: 6px 8px; font-size: 11px; line-height: 1.8; }
+    #actions a { margin: 0 3px; }
+    #tagline { text-align: center; font-size: 12px; padding: 6px 10px; }
+    #layout { grid-template-columns: 1fr; padding: 8px; gap: 8px; }
+    #center .topbox { padding: 8px 10px; font-size: 13px; }
+    #center .pipes { font-size: 14px; line-height: 1.7; }
+    #center .post .hey { font-size: 36px; line-height: 1.05; }
+    #center .pitch { padding: 8px 10px; font-size: 13px; }
+    .panel ul li a { font-size: 13px; padding: 6px 10px; }
+    .btn88, .kevin-banner { margin: 4px auto; }
   }
 </style>
 </head>
