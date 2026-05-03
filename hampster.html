@@ -129,10 +129,12 @@
     line-height: 1;
     filter: drop-shadow(0 0 14px #ff66cc) drop-shadow(0 6px 8px rgba(0, 0, 0, 0.4));
     animation: hamDance 0.45s ease-in-out infinite alternate;
+    width: auto;
+    height: auto;
   }
-  .dh.s1 { animation-delay: 0s;    font-size: 160px; }
-  .dh.s2 { animation-delay: 0.15s; font-size: 220px; }
-  .dh.s3 { animation-delay: 0.30s; font-size: 130px; }
+  .dh.s1 { animation-delay: 0s;    height: 220px; }
+  .dh.s2 { animation-delay: 0.15s; height: 300px; }
+  .dh.s3 { animation-delay: 0.30s; height: 170px; }
   @keyframes hamDance {
     from { transform: translateY(0)    rotate(-12deg); }
     to   { transform: translateY(-32px) rotate(12deg);  }
@@ -144,9 +146,9 @@
     .grid { grid-template-columns: repeat(4, 1fr); padding: 8px; gap: 4px; }
     .dance-bubble { font-size: 18px; padding: 10px 18px; margin-bottom: 18px; }
     .dance-bubble small { font-size: 11px; }
-    .dh.s1 { font-size: 90px;  }
-    .dh.s2 { font-size: 120px; }
-    .dh.s3 { font-size: 72px;  }
+    .dh.s1 { height: 140px; }
+    .dh.s2 { height: 190px; }
+    .dh.s3 { height: 110px; }
   }
 </style>
 </head>
@@ -154,10 +156,10 @@
 
 <h1 class="blink">KEVIN&middot;DANCE</h1>
 <div class="sub">~*~ welcome 2 the kevin dance ~*~</div>
-<div class="midi">&#9835; now playing: 59854498-ab6c-4978-b559-11cd894579f8.mid &#9835; PRESS PLAY &darr;</div>
+<div class="midi">&#9835; now playing: smashmouth - all star.mid &#9835; PRESS PLAY &darr;</div>
 <div style="max-width:600px; margin: 6px auto 10px;">
   <audio controls loop style="width:100%;">
-    <source src="59854498-ab6c-4978-b559-11cd894579f8.mp3" type="audio/mpeg">
+    <source src="smashmouth - all star.mp3" type="audio/mpeg">
     your browser is too old 4 audio. upgrade 2 IE6.
   </audio>
 </div>
@@ -179,9 +181,9 @@
 <div id="dancecorner" title="click anywhere 2 start">
   <div class="dance-bubble">CLICK 2 START THE DANCE<small>&darr; &darr; &darr;</small></div>
   <div class="dance-trio">
-    <span class="dh s1">&#128057;</span>
-    <span class="dh s2">&#128057;</span>
-    <span class="dh s3">&#128057;</span>
+    <img class="dh s1" src="hampster.png" alt="">
+    <img class="dh s2" src="hampster.png" alt="">
+    <img class="dh s3" src="hampster.png" alt="">
   </div>
 </div>
 
